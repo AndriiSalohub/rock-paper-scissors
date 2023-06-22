@@ -5,6 +5,10 @@ const computerScore = document.querySelector("#computer-score span");
 const movesVariants = document.querySelectorAll(".main__moves-variants-item");
 const title = document.querySelector(".main__title");
 const subtitle = document.querySelector(".main__subtitle");
+const resultModal = document.querySelector(".wrapper");
+const result = document.querySelector(".result");
+const resultModalTitle = document.querySelector(".result__title");
+const playAgainBtn = document.querySelector(".result__btn");
 let playerPoints = 0;
 let computerPoints = 0;
 const variants = ["✊", "✋", "✌"];
@@ -14,16 +18,40 @@ const generateComputerChoose = () => {
         variants[Math.floor(Math.random() * variants.length)];
 };
 
+const escapePlayAgain = () => {
+    if (resultModal.style.display === "block") {
+        document.addEventListener(
+            "keyup",
+            (e) => {
+                if (e.code === "Escape") {
+                    playAgain();
+                }
+            },
+            { once: true }
+        );
+    }
+};
+
 const changePlayerScore = () => {
     playerPoints += 1;
     playerScore.textContent = playerPoints;
     title.textContent = "You won!";
+    if (playerPoints === 5) {
+        resultModal.style.display = "block";
+        resultModalTitle.textContent = "You won!";
+    }
+    escapePlayAgain();
 };
 
 const changeComputerScore = () => {
     computerPoints += 1;
     computerScore.textContent = computerPoints;
     title.textContent = "You lost!";
+    if (computerPoints === 5) {
+        resultModal.style.display = "block";
+        resultModalTitle.textContent = "You lost!";
+    }
+    escapePlayAgain();
 };
 
 const compareChoose = (playerChoose, computerChoose) => {
@@ -86,4 +114,26 @@ movesVariants.forEach((move) => {
                 break;
         }
     });
+});
+
+const playAgain = () => {
+    playerChoose.textContent = "?";
+    computerChoose.textContent = "?";
+    playerScore.textContent = "0";
+    computerScore.textContent = "0";
+    title.textContent = "Choose your weapon";
+    subtitle.textContent = "First to score 5 points wins the game";
+    resultModal.style.display = "";
+    playerPoints = 0;
+    computerPoints = 0;
+};
+
+playAgainBtn.addEventListener("click", () => {
+    playAgain();
+});
+
+resultModal.addEventListener("click", (e) => {
+    if (e.target !== result) {
+        playAgain();
+    }
 });
