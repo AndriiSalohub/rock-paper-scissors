@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=VT323&display=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+.header {
+    background-color: #111720;
+    padding: 20px;
+    text-align: center;
+    &__title {
+        color: #fac650;
+        font-size: 80px;
+        font-family: "VT323", monospace;
+    }
+}
+
+@media (max-width: 900px) {
+    .header {
+        &__title {
+            font-size: 60px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        &__title {
+            font-size: 40px;
+        }
+    }
+}
