@@ -1,14 +1,20 @@
 const playerChoose = document.querySelector("#player-choose");
 const playerScore = document.querySelector("#player-score span");
+
 const computerChoose = document.querySelector("#computer-choose");
 const computerScore = document.querySelector("#computer-score span");
-const movesVariants = document.querySelectorAll(".main__moves-variants-item");
+
+const movesVariants = document.querySelectorAll(".main__moves-variants_item");
+
 const title = document.querySelector(".main__title");
 const subtitle = document.querySelector(".main__subtitle");
+
 const resultModal = document.querySelector(".wrapper");
 const result = document.querySelector(".result");
 const resultModalTitle = document.querySelector(".result__title");
+
 const playAgainBtn = document.querySelector(".result__btn");
+
 let playerPoints = 0;
 let computerPoints = 0;
 const variants = ["✊", "✋", "✌"];
